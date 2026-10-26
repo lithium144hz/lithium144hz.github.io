@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofiia Prokuratova — 2D Animator & Illustrator (lithium144hz)</title>
+  <meta name="description" content="Portfolio of Sofiia Prokuratova (lithium144hz) — 2D Animator & Illustrator.">
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Left Navigation -->
+  <aside class="floating-nav" id="sidebar">
+    <nav class="nav-links" id="sidebarNav">
+      <!-- Animated sliding blue dot -->
+      <span class="nav-glow-dot" id="navGlowDot"></span>
+
+      <a href="#intro" class="nav-item active" data-section="intro">
+        <span class="nav-text">Intro</span>
+      </a>
+      <a href="#showcase" class="nav-item" data-section="showcase">
+        <span class="nav-text">Showcase</span>
+      </a>
+      <a href="#work" class="nav-item" data-section="work">
+        <span class="nav-text">Work</span>
+      </a>
+      <a href="#contact" class="nav-item" data-section="contact">
+        <span class="nav-text">Contact</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Website Content (Wide Stretched Layout) -->
+  <div class="site-container">
+    <main class="main-content">
+
+      <!-- 1. Intro / Hero -->
+      <section class="section intro-section" id="intro">
+        <div class="intro-editorial-row">
+          <div class="intro-headings">
+            <span class="intro-kicker">Personal Portfolio</span>
+            <h1 class="intro-name">Sofiia Prokuratova</h1>
+            
+            <div class="intro-meta-line">
+              <span class="intro-role">2D Animator &amp; Illustrator</span>
+              <span class="meta-separator">&bull;</span>
+              <span class="intro-handle">lithium144hz</span>
+            </div>
+
+            <p class="intro-skills">
+              Frame-by-frame &bull; Skeletal Animation &bull; Rigging &bull; Concept Art &bull; Illustrations
+            </p>
+          </div>
+
+          <!-- Large Artistic Portrait on the right -->
+          <div class="intro-portrait-wrap">
+            <img src="images/avatar_head.jpg" alt="Sofiia Prokuratova" class="intro-portrait">
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Showcase / Reel -->
+      <section class="section showcase-section" id="showcase">
+        <div class="section-header">
+          <div>
+            <span class="section-num">01</span>
+            <h2 class="section-title">Showcase</h2>
+          </div>
+          <span class="section-label">Animation Reel</span>
+        </div>
+
+        <div class="showcase-box">
+          <div class="showcase-content">
+            <div class="showcase-play-btn">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <span class="showcase-title">[ Showcase Video Placeholder ]</span>
+            <span class="showcase-desc">Embed YouTube / Vimeo or connect an MP4 / WebM reel</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Work Gallery -->
+      <section class="section work-section" id="work">
+        <div class="section-header">
+          <div>
+            <span class="section-num">02</span>
+            <h2 class="section-title">Work</h2>
+          </div>
+
+          <!-- Category Filter Bar -->
+          <div class="work-filters" id="workFilters">
+            <span class="tab-slider" id="tabSlider"></span>
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="pixel">Pixel Animation</button>
+            <button class="filter-tab" data-filter="skeletal">Skeletal Animation</button>
+            <button class="filter-tab" data-filter="illustrations">Illustrations</button>
+            <button class="filter-tab" data-filter="personal">Personal Works</button>
+          </div>
+        </div>
+
+        <!-- Frameless Work Gallery with Side Navigation Arrows -->
+        <div class="work-gallery-wrapper">
+          <button class="gallery-side-btn gallery-side-prev" id="galleryPrevBtn" aria-label="Previous works category">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+
+          <div class="work-grid" id="workGrid">
+
+          <!-- 1. Pixel Animation -->
+          <article class="work-item" data-category="pixel" 
+                   data-title="Placeholder" 
+                   data-type="image" 
+                   data-src=""
+                   data-desc="Placeholder">
+            <div class="work-thumb">
+              <span class="work-ph">[ Placeholder ]</span>
+            </div>
+            <div class="work-meta">
+              <h3 class="work-title">Placeholder</h3>
+              <p class="work-sub">Pixel Animation &bull; Aseprite</p>
+            </div>
+          </article>
+
+          <!-- 2. Skeletal Animation -->
+          <article class="work-item" data-category="skeletal" 
+                   data-title="Placeholder" 
+                   data-type="image" 
+                   data-src=""
+                   data-desc="Placeholder">
+            <div class="work-thumb">
+              <span class="work-ph">[ Placeholder ]</span>
+            </div>
+            <div class="work-meta">
+              <h3 class="work-title">Placeholder</h3>
+              <p class="work-sub">Skeletal Animation &bull; Spine 2D</p>
+            </div>
+          </article>
+
+          <!-- 3. Illustrations -->
+          <article class="work-item" data-category="illustrations" 
+                   data-title="Placeholder" 
+                   data-type="image" 
+                   data-src=""
+                   data-desc="Placeholder">
+            <div class="work-thumb">
+              <span class="work-ph">[ Placeholder ]</span>
+            </div>
+            <div class="work-meta">
+              <h3 class="work-title">Placeholder</h3>
+              <p class="work-sub">Illustrations &bull; Clip Studio Paint / PS</p>
+            </div>
+          </article>
+
+          <!-- 4. Personal Works -->
+          <article class="work-item" data-category="personal" 
+                   data-title="Placeholder" 
+                   data-type="image" 
+                   data-src=""
+                   data-desc="Placeholder">
+            <div class="work-thumb">
+              <span class="work-ph">[ Placeholder ]</span>
+            </div>
+            <div class="work-meta">
+              <h3 class="work-title">Placeholder</h3>
+              <p class="work-sub">Personal Works</p>
+            </div>
+          </article>
+
+          <!-- 5. Skeletal Animation #2 -->
+          <article class="work-item" data-category="skeletal" 
+                   data-title="Placeholder" 
+                   data-type="image" 
+                   data-src=""
+                   data-desc="Placeholder">
+            <div class="work-thumb">
+              <span class="work-ph">[ Placeholder ]</span>
+            </div>
+            <div class="work-meta">
+              <h3 class="work-title">Placeholder</h3>
+              <p class="work-sub">Skeletal Animation &bull; Spine 2D</p>
+            </div>
+          </article>
+
+          <!-- 6. Pixel Animation #2 -->
+          <article class="work-item" data-category="pixel" 
+                   data-title="Placeholder" 
+                   data-type="image" 
+                   data-src=""
+                   data-desc="Placeholder">
+            <div class="work-thumb">
+              <span class="work-ph">[ Placeholder ]</span>
+            </div>
+            <div class="work-meta">
+              <h3 class="work-title">Placeholder</h3>
+              <p class="work-sub">Pixel Animation &bull; Aseprite</p>
+            </div>
+          </article>
+
+          </div>
+
+          <button class="gallery-side-btn gallery-side-next" id="galleryNextBtn" aria-label="Next works category">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- 4. Contact -->
+      <section class="section contact-section" id="contact">
+        <div class="contact-header-row">
+          <div>
+            <span class="section-num">03</span>
+            <h2 class="section-title">Contact</h2>
+          </div>
+
+          <!-- Open to Opportunities Status Badge -->
+          <div class="opportunity-badge">
+            <span class="status-pulse-dot"></span>
+            <span>Open to project opportunities</span>
+          </div>
+        </div>
+
+        <p class="contact-callout">
+          Interested in collaborating or need 2D animation and art? Feel free to reach out.
+        </p>
+
+        <div class="contact-links-grid">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sprok311@gmail.com" target="_blank" rel="noopener" class="contact-anchor">
+            <span class="contact-name">Email</span>
+            <span class="contact-handle">sprok311@gmail.com <span class="arrow">&rarr;</span></span>
+          </a>
+
+          <a href="https://www.artstation.com" target="_blank" rel="noopener" class="contact-anchor">
+            <span class="contact-name">ArtStation</span>
+            <span class="contact-handle">placeholder <span class="arrow">&rarr;</span></span>
+          </a>
+
+          <a href="https://discord.com/users/397204662337404949" target="_blank" rel="noopener" class="contact-anchor" id="discordLink">
+            <span class="contact-name">Discord</span>
+            <span class="contact-handle"><span id="discordHandle">kllrqsn</span> <span class="arrow">&rarr;</span></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Minimal Footer -->
+      <footer class="site-footer">
+        <span>Sofiia Prokuratova &bull; lithium144hz</span>
+        <a href="#intro" class="to-top-btn">&uarr;</a>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Lightbox Modal (with Left & Right arrows for smooth browsing) -->
+  <div class="lightbox" id="portfolioModal" aria-hidden="true">
+    <div class="lightbox-dialog">
+      <button class="lightbox-close" id="modalClose" aria-label="Close">&times;</button>
+      <button class="lightbox-nav-btn lightbox-prev" id="modalPrev" aria-label="Previous work">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="lightbox-nav-btn lightbox-next" id="modalNext" aria-label="Next work">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      
+      <div class="lightbox-media" id="modalMedia"></div>
+      <div class="lightbox-details">
+        <h3 id="modalTitle" class="lightbox-title">Title</h3>
+        <p id="modalDesc" class="lightbox-desc">Description</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
