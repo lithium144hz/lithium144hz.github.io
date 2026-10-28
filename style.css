@@ -377,7 +377,480 @@ a {
 }
 
 /* ========================================================
-   3. Work & Categories (Gliding Indicator + Flanking Side Arrows)
+   3. Featured Projects Grid
+   ======================================================== */
+.projects-section {
+  padding: 80px 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 8px;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(134, 239, 172, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 35px var(--accent-blue-glow);
+}
+
+.project-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #08080a;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: radial-gradient(circle at center, #13141a 0%, #060608 100%);
+  padding: 24px;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.project-card:hover .project-thumb-placeholder {
+  background: radial-gradient(circle at center, #181c26 0%, #08090e 100%);
+}
+
+.project-pill {
+  font-family: monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.5px;
+  color: var(--accent-blue);
+  background: var(--accent-blue-soft);
+  border: 1px solid rgba(134, 239, 172, 0.25);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.project-ph-text {
+  font-size: 0.88rem;
+  color: var(--text-gray);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.project-hover-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 12px;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: var(--transition);
+}
+
+.project-card:hover .project-hover-hint {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.project-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.project-tag {
+  font-size: 0.78rem;
+  font-family: monospace;
+  color: var(--accent-blue);
+  letter-spacing: 0.2px;
+}
+
+.project-year {
+  font-size: 0.78rem;
+  font-family: monospace;
+  color: var(--text-dim);
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  transition: color 0.2s ease;
+}
+
+.project-card:hover .project-title {
+  color: var(--accent-blue);
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--text-gray);
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.project-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-white);
+  cursor: pointer;
+  padding: 0;
+  align-self: flex-start;
+  transition: var(--transition);
+}
+
+.project-view-btn .arrow {
+  color: var(--accent-blue);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover .project-view-btn {
+  color: var(--accent-blue);
+}
+
+.project-card:hover .project-view-btn .arrow {
+  transform: translateX(4px);
+}
+
+/* ========================================================
+   Projects Deep-Dive Modal (Almost Full-Screen)
+   ======================================================== */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+  padding: 30px 24px;
+}
+
+.project-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.project-modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: 94vw;
+  max-width: 1140px;
+  height: 88vh;
+  max-height: 88vh;
+  background: #09090c;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 50px rgba(134, 239, 172, 0.08);
+  border-radius: 12px;
+  overflow-y: auto;
+  transform: scale(0.95) translateY(16px);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 36px 44px;
+}
+
+.project-modal.open .project-modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+/* Custom Scrollbar for Modal Dialog */
+.project-modal-dialog::-webkit-scrollbar {
+  width: 7px;
+}
+.project-modal-dialog::-webkit-scrollbar-track {
+  background: #060608;
+}
+.project-modal-dialog::-webkit-scrollbar-thumb {
+  background: #222228;
+  border-radius: 4px;
+}
+.project-modal-dialog::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+.project-modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(18, 18, 22, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-gray);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  margin-top: -6px;
+  margin-right: -14px;
+  transition: var(--transition);
+}
+
+.project-modal-close:hover {
+  color: #fff;
+  border-color: var(--accent-blue);
+  background: var(--accent-blue-soft);
+  box-shadow: 0 0 20px var(--accent-blue-glow);
+  transform: scale(1.08);
+}
+
+/* Modal Internal Sections */
+.modal-project-header {
+  margin-bottom: 24px;
+}
+
+.modal-project-pill {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+  background: var(--accent-blue-soft);
+  border: 1px solid rgba(134, 239, 172, 0.25);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.modal-project-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.modal-project-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 28px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-label {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-val {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Modal Hero Box */
+.modal-project-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 480px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: radial-gradient(circle at center, #14161f 0%, #06070a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.modal-hero-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.modal-hero-desc {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+
+/* Modal Story & Role Columns */
+.modal-project-story-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 36px;
+  margin-bottom: 44px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+
+.story-block h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.story-block h4::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px var(--accent-blue);
+}
+
+.story-block p {
+  font-size: 0.92rem;
+  color: var(--text-gray);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+/* Modal Works / Deliverables Section */
+.modal-works-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.modal-works-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.modal-works-count {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+}
+
+.modal-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.modal-work-asset-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.modal-work-asset-card:hover {
+  border-color: rgba(134, 239, 172, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.modal-asset-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: radial-gradient(circle at center, #151720 0%, #08090d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-asset-thumb-text {
+  font-size: 0.82rem;
+  color: var(--text-gray);
+}
+
+.modal-asset-info {
+  padding: 14px 16px;
+}
+
+.modal-asset-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.modal-asset-meta {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-family: monospace;
+}
+
+/* ========================================================
+   4. Work & Categories (Gliding Indicator + Flanking Side Arrows)
    ======================================================== */
 .work-filters {
   position: relative;
@@ -868,6 +1341,26 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-modal-dialog {
+    padding: 28px 24px;
+    height: 92vh;
+    max-height: 92vh;
+  }
+
+  .modal-project-title {
+    font-size: 1.7rem;
+  }
+
+  .modal-project-story-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .gallery-side-btn {
     width: 42px;
     height: 42px;
@@ -883,6 +1376,24 @@ a {
 }
 
 @media (max-width: 600px) {
+  .project-modal {
+    padding: 10px 6px;
+  }
+
+  .project-modal-dialog {
+    padding: 22px 16px;
+    width: 96vw;
+  }
+
+  .modal-project-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-project-specs {
+    gap: 12px 16px;
+    padding: 12px 14px;
+  }
+
   .work-filters {
     gap: 16px;
   }

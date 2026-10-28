@@ -27,6 +27,9 @@
       <a href="#showcase" class="nav-item" data-section="showcase">
         <span class="nav-text">Showcase</span>
       </a>
+      <a href="#projects" class="nav-item" data-section="projects">
+        <span class="nav-text">Projects</span>
+      </a>
       <a href="#work" class="nav-item" data-section="work">
         <span class="nav-text">Work</span>
       </a>
@@ -88,11 +91,104 @@
         </div>
       </section>
 
-      <!-- 3. Work Gallery -->
-      <section class="section work-section" id="work">
+      <!-- 3. Featured Projects -->
+      <section class="section projects-section" id="projects">
         <div class="section-header">
           <div>
             <span class="section-num">02</span>
+            <h2 class="section-title">Projects</h2>
+          </div>
+          <span class="section-label">Featured Game Titles &amp; Case Studies</span>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 01 -->
+          <article class="project-card" data-project-id="1">
+            <div class="project-thumb-wrap">
+              <div class="project-thumb-placeholder">
+                <span class="project-pill">Project 01</span>
+                <span class="project-ph-text">[ Project Cover Image / GIF ]</span>
+                <span class="project-hover-hint">
+                  <span>View Case Study</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-tag">Skeletal Animation &bull; Spine 2D</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h3 class="project-title">Project Title #1</h3>
+              <p class="project-desc">Interactive game project featuring custom character skeletal rigs, multi-limb boss monsters, combat movements and Unity integration.</p>
+              <button class="project-view-btn" type="button" aria-label="Open Project 1 Details">
+                <span>Explore Project</span>
+                <span class="arrow">&rarr;</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 02 -->
+          <article class="project-card" data-project-id="2">
+            <div class="project-thumb-wrap">
+              <div class="project-thumb-placeholder">
+                <span class="project-pill">Project 02</span>
+                <span class="project-ph-text">[ Project Cover Image / GIF ]</span>
+                <span class="project-hover-hint">
+                  <span>View Case Study</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-tag">Pixel Art &bull; Frame-by-Frame</span>
+                <span class="project-year">2023–2024</span>
+              </div>
+              <h3 class="project-title">Project Title #2</h3>
+              <p class="project-desc">Retro action title featuring hand-crafted pixel sprite sheets, frame-by-frame attack smear frames, and stylized impact VFX.</p>
+              <button class="project-view-btn" type="button" aria-label="Open Project 2 Details">
+                <span>Explore Project</span>
+                <span class="arrow">&rarr;</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 03 -->
+          <article class="project-card" data-project-id="3">
+            <div class="project-thumb-wrap">
+              <div class="project-thumb-placeholder">
+                <span class="project-pill">Project 03</span>
+                <span class="project-ph-text">[ Project Cover Image / GIF ]</span>
+                <span class="project-hover-hint">
+                  <span>View Case Study</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-tag">Art Direction &bull; 2D Illustration</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h3 class="project-title">Project Title #3</h3>
+              <p class="project-desc">Atmospheric story-driven project with full-screen cutscene art, layered parallax game environments, and character design sheets.</p>
+              <button class="project-view-btn" type="button" aria-label="Open Project 3 Details">
+                <span>Explore Project</span>
+                <span class="arrow">&rarr;</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- 4. Work Gallery -->
+      <section class="section work-section" id="work">
+        <div class="section-header">
+          <div>
+            <span class="section-num">03</span>
             <h2 class="section-title">Work</h2>
           </div>
 
@@ -213,11 +309,11 @@
         </div>
       </section>
 
-      <!-- 4. Contact -->
+      <!-- 5. Contact -->
       <section class="section contact-section" id="contact">
         <div class="contact-header-row">
           <div>
-            <span class="section-num">03</span>
+            <span class="section-num">04</span>
             <h2 class="section-title">Contact</h2>
           </div>
 
@@ -257,6 +353,17 @@
       </footer>
 
     </main>
+  </div>
+
+  <!-- Project Deep-Dive Modal (Almost Full-Screen) -->
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
+    <div class="project-modal-dialog" role="dialog" aria-modal="true">
+      <button class="project-modal-close" id="projectModalClose" aria-label="Close project modal">&times;</button>
+      <div class="project-modal-content" id="projectModalContent">
+        <!-- Injected dynamically via script.js -->
+      </div>
+    </div>
   </div>
 
   <!-- Lightbox Modal (with Left & Right arrows for smooth browsing) -->
