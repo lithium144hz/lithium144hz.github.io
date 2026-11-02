@@ -319,6 +319,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (projectModal && projectModal.classList.contains('open')) {
       if (e.key === 'Escape') {
         closeProjectModal();
+      } else if (e.key === 'ArrowLeft') {
+        navigateProjectSlide(-1);
+      } else if (e.key === 'ArrowRight') {
+        navigateProjectSlide(1);
       }
     } else if (modal && modal.classList.contains('open')) {
       if (e.key === 'Escape') {
@@ -363,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 5. Featured Projects Data & Almost Full-Screen Modal
-  const projectCards = document.querySelectorAll('.project-card');
+  const projectRows = document.querySelectorAll('.project-row');
   const projectModal = document.getElementById('projectModal');
   const projectModalClose = document.getElementById('projectModalClose');
   const projectModalBackdrop = document.getElementById('projectModalBackdrop');
@@ -372,132 +376,228 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectsData = {
     '1': {
       pill: 'Project 01',
-      title: 'Project Title #1',
-      subtitle: 'Skeletal Animation & Character Rigging in Spine 2D',
+      title: 'Before I Rest',
+      subtitle: 'Solo-Developed 2D Cinematic Adventure &bull; Environmental Storytelling',
       specs: [
-        { label: 'Role', val: 'Lead 2D Animator & Rigging Artist' },
-        { label: 'Engine & Tools', val: 'Spine 2D &bull; Unity' },
-        { label: 'Genre', val: 'Action Adventure / 2D Platformer' },
-        { label: 'Timeline', val: '2024' },
-        { label: 'Status', val: 'Demo Available / Steam' }
+        { label: 'Role', val: 'Solo Developer (All Disciplines)' },
+        { label: 'Engine & Tools', val: 'Unity &bull; Photoshop / Clip Studio Paint' },
+        { label: 'Genre', val: '2D Cinematic Platformer' },
+        { label: 'Timeline', val: '2026' },
+        { label: 'Status', val: 'In Active Development' }
       ],
-      heroTitle: '[ Project 01 — Gameplay Trailer / Animation Reel Placeholder ]',
-      heroDesc: 'Embed a high-resolution video or animated gameplay GIF of this project here.',
-      storyTitle: 'About the Project',
-      storyText: 'Comprehensive description of the game concept, artistic vision, combat pacing and narrative setting. Replace this text with your game story, background details, and core mechanics.',
-      roleTitle: 'My Role & Animation Pipeline',
-      roleText: 'Detailed breakdown of character mesh setup, bone weighting, inverse kinematics (IK), dynamic hair/cloth physics, and fluid transitions between combat states directly inside the Unity engine.',
-      worksCount: '4 Key Deliverables',
-      works: [
+      slides: [
         {
-          title: 'Main Hero Combat & Movement Loop',
-          meta: 'Spine 2D &bull; 60 FPS Skeletal Rig',
-          placeholder: '[ Asset 01 — Idle, Run & Attack Combos ]'
+          title: 'Before I Rest — Atmospheric World Reel',
+          tag: 'Cinematic Platformer &bull; Solo Project',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Before I Rest — Gameplay & Audiovisual Atmosphere Reel ]'
         },
         {
-          title: 'Multi-Phase Boss Monster Rig',
-          meta: 'Spine 2D &bull; Weighted Skinning & Transform Constraints',
-          placeholder: '[ Asset 02 — Boss Idle & Rage State Loop ]'
+          title: 'Gopher Locomotion & Survival Cycles',
+          tag: 'Hand-Drawn &bull; Traditional Frame-by-Frame',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 01 — Run, Scurry, Hide & Tremble Cycles ]'
         },
         {
-          title: 'Slashing Smears & Impact Particle VFX',
-          meta: 'Clip Studio Paint / Unity Particle System',
-          placeholder: '[ Asset 03 — Hit VFX & Slash Particles ]'
+          title: 'Environmental Storytelling & World Scale',
+          tag: 'Background Art &bull; Mood & Lighting',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 02 — Outside World Seen Through a Tiny Creature ]'
         },
         {
-          title: 'Character Turnarounds & Pose Breakdown',
-          meta: 'Spine 2D / Photoshop Sheets',
-          placeholder: '[ Asset 04 — Keyframe Poses & Rig Anatomy ]'
+          title: 'Audiovisual Mood Moments & Cutscenes',
+          tag: 'Hand-Drawn 2D &bull; Emotional Keyframes',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 03 — Story Cutscene & Tone Vignettes ]'
+        },
+        {
+          title: 'Character Design & Model Sheets',
+          tag: 'Visual Development &bull; Model Sheets',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 04 — Domestic Gopher Turnaround & Expressions ]'
         }
-      ]
+      ],
+      storyTitle: 'About the Project',
+      storyText: 'Before I Rest is a personal solo-developed 2D cinematic platformer following a domesticated gopher thrust into the unforgiving urban outside world. The game centers on deep environmental storytelling, using expressive audiovisual worldbuilding, lighting, and ambient tone shifts to portray the vulnerable emotional journey of survival without relying on conventional dialogue.',
+      roleTitle: 'My Role & Development Scope',
+      roleText: 'As the sole creator, I am responsible for every discipline across production: traditional hand-drawn frame-by-frame character animation, background illustration, game design, narrative pacing, atmospheric audiovisual direction, and full Unity implementation.'
     },
     '2': {
       pill: 'Project 02',
-      title: 'Project Title #2',
-      subtitle: 'Frame-by-Frame Pixel Art Animation & Combat VFX',
+      title: 'Haunt the Hunt',
+      subtitle: 'Solo-Developed 2D Multiplayer Prop Hunt &bull; Frame-by-Frame Pixel Art',
       specs: [
-        { label: 'Role', val: 'Pixel Art Animator & VFX Artist' },
-        { label: 'Engine & Tools', val: 'Aseprite &bull; Unity' },
-        { label: 'Genre', val: 'Metroidvania / Pixel Roguelike' },
-        { label: 'Timeline', val: '2023–2024' },
-        { label: 'Status', val: 'In Development' }
+        { label: 'Role', val: 'Solo Developer (All Disciplines)' },
+        { label: 'Engine & Tools', val: 'Unity &bull; Aseprite' },
+        { label: 'Genre', val: '2D Multiplayer Prop Hunt / Hide-and-Seek' },
+        { label: 'Timeline', val: '2026' },
+        { label: 'Status', val: 'In Active Development' }
       ],
-      heroTitle: '[ Project 02 — Pixel Gameplay & Combat Reel Placeholder ]',
-      heroDesc: 'Showcase fast-paced pixel combat, boss encounters, and smooth pixel movement.',
-      storyTitle: 'About the Project',
-      storyText: 'A fast-paced retro-inspired title requiring high-precision timing, expressive silhouette poses, and satisfying animation feedback for every player action.',
-      roleTitle: 'My Role & Animation Pipeline',
-      roleText: 'Created hand-drawn pixel sprite sheets frame-by-frame in Aseprite. Focused on keyframe anticipation, smear frames for high-speed attacks, recovery frames, and impact particle bursts.',
-      worksCount: '4 Key Deliverables',
-      works: [
+      slides: [
         {
-          title: 'Player Character Locomotion & Combat Sheet',
-          meta: 'Aseprite &bull; 16-bit Frame-by-Frame',
-          placeholder: '[ Asset 01 — Run, Dash, Double Jump & Slash ]'
+          title: 'Haunt the Hunt — Multiplayer Match Gameplay Reel',
+          tag: 'Prop Hunt &bull; Solo Project',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Haunt the Hunt — Match Gameplay & Mechanics Reel ]'
         },
         {
-          title: 'Enemy Mob Behaviors & Death VFX',
-          meta: 'Aseprite &bull; Impact Frames',
-          placeholder: '[ Asset 02 — Enemy Patrol, Aggro & Explode ]'
+          title: 'Ghost Possession & Transformation Loops',
+          tag: 'Aseprite &bull; Frame-by-Frame Pixel',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 01 — Ghost Idle, Float, Possess & Disguise Loops ]'
         },
         {
-          title: 'Elemental Spell VFX & Explosions',
-          meta: 'Pixel Animation &bull; Full Sprite Sheets',
-          placeholder: '[ Asset 03 — Magic Bursts & Particle Sheets ]'
+          title: 'Hunter Search, Scan & Capture Animations',
+          tag: 'Pixel Combat &bull; Smear Frames',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 02 — Hunter Patrol, Sweep, Tag & Catch VFX ]'
         },
         {
-          title: 'Animated Props & Parallax Tile Backgrounds',
-          meta: 'Pixel Art &bull; Ambient Loop',
-          placeholder: '[ Asset 04 — Interactive Environment Assets ]'
+          title: 'Interactive Map Props & Disguise Targets',
+          tag: 'Pixel Environment &bull; Interactive Sprites',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 03 — Possessable Furniture, Props & Shiver States ]'
+        },
+        {
+          title: 'Pixel VFX: Smoke Poofs, Possession Sparkles & UI',
+          tag: 'Pixel VFX &bull; Action Feedback',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 04 — Reveal Poofs, Possession Magic & Timer UI ]'
         }
-      ]
+      ],
+      storyTitle: 'About the Project',
+      storyText: 'Haunt the Hunt is a solo-developed 2D asymmetrical multiplayer prop hunt game designed around charming, accessible party gameplay. One hunter explores the arena seeking out mischievous ghosts, who must possess, mimic, and blend into everyday furniture and props to stay hidden until time expires.',
+      roleTitle: 'My Role & Development Scope',
+      roleText: 'As the sole creator, I designed and built every layer of the game: traditional frame-by-frame pixel art spritesheets in Aseprite, possession VFX transitions, environment props and map design, core party game rules, and full Unity multiplayer implementation.'
     },
     '3': {
       pill: 'Project 03',
-      title: 'Project Title #3',
-      subtitle: 'Visual Art Direction, Cutscenes & 2D Illustrations',
+      title: 'Dead of Night',
+      subtitle: 'Cemetery Sim & Action RPG &bull; Frame-by-Frame Pixel Art',
       specs: [
-        { label: 'Role', val: '2D Artist & Illustrator' },
-        { label: 'Engine & Tools', val: 'Clip Studio Paint &bull; Photoshop' },
-        { label: 'Genre', val: 'Narrative Adventure / Visual Novel / RPG' },
-        { label: 'Timeline', val: '2023' },
-        { label: 'Status', val: 'Released' }
+        { label: 'Role', val: '2D Artist' },
+        { label: 'Engine & Tools', val: 'Aseprite / Photoshop &bull; Unity' },
+        { label: 'Genre', val: '2D Cemetery Simulation &bull; Action RPG' },
+        { label: 'Timeline', val: '2025' },
+        { label: 'Status', val: 'Completed Prototype (Vertical Slice)' }
       ],
-      heroTitle: '[ Project 03 — Cinematic Cutscene & Art Showcase Placeholder ]',
-      heroDesc: 'Place cinematic illustration reel, animated story cutscene or concept art overview.',
-      storyTitle: 'About the Project',
-      storyText: 'An atmospheric, narrative-driven title featuring rich character design, evocative lighting, and emotional visual storytelling across key plot milestones.',
-      roleTitle: 'My Role & Artistic Pipeline',
-      roleText: 'Responsible for key story illustrations, full-screen cutscene art, layered parallax environment paintings, character portrait expression sheets, and overall visual asset consistency.',
-      worksCount: '4 Key Deliverables',
-      works: [
+      slides: [
         {
-          title: 'Climactic Story Cutscene Illustrations',
-          meta: 'Clip Studio Paint &bull; Full-Color Cinematic Art',
-          placeholder: '[ Asset 01 — Key Story Milestone Art ]'
+          title: 'Dead of Night — Gameplay & World Reel',
+          tag: 'Cemetery Sim &bull; Action RPG',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Dead of Night — Day/Night Gameplay & Mechanics Reel ]'
         },
         {
-          title: 'Character Portrait Expressions & Costumes',
-          meta: 'Photoshop &bull; Multi-Layer Dialogue Sprites',
-          placeholder: '[ Asset 02 — Dialogue Portrait Set ]'
+          title: 'Keeper Daytime Duties: Shoveling & Grave Digging',
+          tag: 'Aseprite &bull; Frame-by-Frame Pixel',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 01 — Shovel Digging, Dirt Throw & Walking Loops ]'
         },
         {
-          title: 'Multi-Layered Parallax Game Backgrounds',
-          meta: 'Digital Painting &bull; 4K Atmospheric Environments',
-          placeholder: '[ Asset 03 — Layered Parallax Backdrop ]'
+          title: 'Nighttime Combat & Monster Banishment',
+          tag: 'Pixel Combat &bull; Attack Smears',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 02 — Banishment Spells, Monster Hits & Attack Smears ]'
         },
         {
-          title: 'UI Assets, Item Icons & Visual Bible',
-          meta: 'Concept Art &bull; Style Guide Deliverables',
-          placeholder: '[ Asset 04 — Concept Art Sheets & Icons ]'
+          title: 'Cemetery Mourners & NPC Dialogue Sprites',
+          tag: 'Pixel Characters &bull; Expressions',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 03 — Daytime Client NPCs & Grave Visitors ]'
+        },
+        {
+          title: 'Day & Night Cemetery Environment & Lighting',
+          tag: 'Pixel Environment &bull; Tilemaps',
+          type: 'placeholder',
+          src: '',
+          phText: '[ Asset 04 — Tombstones, Crypts, Fog & Day/Night Palettes ]'
         }
-      ]
+      ],
+      storyTitle: 'About the Project',
+      storyText: 'Dead of Night is a 2D cemetery simulation and survival action RPG created in a collaborative team setting. Players step into the worn boots of a graveyard watchman facing two contrasting realities: tending to grieving visitors and digging fresh graves under the pale daylight, then defending the consecrated grounds and banishing restless monsters once night falls.',
+      roleTitle: 'My Role & Artistic Direction',
+      roleText: 'As the sole visual artist and animator on the team, I was responsible for the entire visual production: designing and animating all frame-by-frame pixel art character sprites (the graveyard keeper, daytime clients, and nighttime creatures), environmental tilemaps, day-to-night palette shifts, and UI assets.'
     }
   };
+
+  let currentProjectData = null;
+  let currentProjectSlideIndex = 0;
+
+  function renderProjectSlide(index) {
+    if (!currentProjectData || !currentProjectData.slides || currentProjectData.slides.length === 0) return;
+    const slides = currentProjectData.slides;
+    currentProjectSlideIndex = (index + slides.length) % slides.length;
+    const slide = slides[currentProjectSlideIndex];
+
+    const mediaArea = document.getElementById('projectStageMedia');
+    const slideTitle = document.getElementById('projectStageTitle');
+    const slideTag = document.getElementById('projectStageTag');
+    const dots = document.querySelectorAll('.stage-dot');
+
+    if (mediaArea) {
+      mediaArea.classList.add('fade-out');
+      setTimeout(() => {
+        mediaArea.innerHTML = '';
+        if (slide.src && slide.src.trim() !== '') {
+          if (slide.type === 'video') {
+            const video = document.createElement('video');
+            video.src = slide.src;
+            video.autoplay = true;
+            video.loop = true;
+            video.controls = true;
+            video.playsInline = true;
+            mediaArea.appendChild(video);
+          } else {
+            const img = document.createElement('img');
+            img.src = slide.src;
+            img.alt = slide.title;
+            mediaArea.appendChild(img);
+          }
+        } else {
+          mediaArea.innerHTML = `
+            <span class="stage-ph-title">${slide.phText || slide.title}</span>
+            <span class="stage-ph-desc">Work ${currentProjectSlideIndex + 1} of ${slides.length} &bull; Image or video reel placeholder</span>
+          `;
+        }
+        mediaArea.classList.remove('fade-out');
+      }, 120);
+    }
+
+    if (slideTitle) slideTitle.textContent = slide.title;
+    if (slideTag) slideTag.innerHTML = `${String(currentProjectSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} &bull; ${slide.tag}`;
+
+    dots.forEach((dot, i) => {
+      if (i === currentProjectSlideIndex) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  }
+
+  function navigateProjectSlide(direction) {
+    if (!currentProjectData || !currentProjectData.slides) return;
+    renderProjectSlide(currentProjectSlideIndex + direction);
+  }
 
   function openProjectModal(projectId) {
     const data = projectsData[projectId];
     if (!data || !projectModal || !projectModalContent) return;
+
+    currentProjectData = data;
+    currentProjectSlideIndex = 0;
 
     let specsHtml = '';
     data.specs.forEach(spec => {
@@ -509,19 +609,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     });
 
-    let worksHtml = '';
-    data.works.forEach(work => {
-      worksHtml += `
-        <div class="modal-work-asset-card">
-          <div class="modal-asset-thumb">
-            <span class="modal-asset-thumb-text">${work.placeholder}</span>
-          </div>
-          <div class="modal-asset-info">
-            <h5 class="modal-asset-title">${work.title}</h5>
-            <span class="modal-asset-meta">${work.meta}</span>
-          </div>
-        </div>
-      `;
+    let dotsHtml = '';
+    data.slides.forEach((_, i) => {
+      dotsHtml += `<button class="stage-dot ${i === 0 ? 'active' : ''}" data-slide-index="${i}" aria-label="Go to slide ${i + 1}"></button>`;
     });
 
     projectModalContent.innerHTML = `
@@ -535,11 +625,29 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
 
-      <div class="modal-project-hero">
-        <span class="modal-hero-title">${data.heroTitle}</span>
-        <span class="modal-hero-desc">${data.heroDesc}</span>
+      <!-- Main Interactive Works Stage (Carousel) -->
+      <div class="modal-showcase-stage" id="projectShowcaseStage">
+        <button class="stage-nav-btn stage-nav-prev" id="projectStagePrev" aria-label="Previous work">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="stage-nav-btn stage-nav-next" id="projectStageNext" aria-label="Next work">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <div class="stage-media-area" id="projectStageMedia"></div>
+
+        <div class="stage-bottom-bar">
+          <div class="stage-info-group">
+            <span class="stage-meta-tag" id="projectStageTag">01 / 05</span>
+            <h4 class="stage-slide-title" id="projectStageTitle">Loading...</h4>
+          </div>
+          <div class="stage-controls" id="projectStageDots">
+            ${dotsHtml}
+          </div>
+        </div>
       </div>
 
+      <!-- Story & Role Columns -->
       <div class="modal-project-story-grid">
         <div class="story-block">
           <h4>${data.storyTitle}</h4>
@@ -550,17 +658,23 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>${data.roleText}</p>
         </div>
       </div>
-
-      <div class="modal-works-section">
-        <div class="modal-works-heading">
-          <h4 class="modal-works-title">Project Works &amp; Animation Deliverables</h4>
-          <span class="modal-works-count">${data.worksCount}</span>
-        </div>
-        <div class="modal-works-grid">
-          ${worksHtml}
-        </div>
-      </div>
     `;
+
+    // Connect stage buttons
+    const prevBtn = document.getElementById('projectStagePrev');
+    const nextBtn = document.getElementById('projectStageNext');
+    if (prevBtn) prevBtn.addEventListener('click', () => navigateProjectSlide(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => navigateProjectSlide(1));
+
+    const dots = document.querySelectorAll('.stage-dot');
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.currentTarget.getAttribute('data-slide-index'), 10);
+        renderProjectSlide(idx);
+      });
+    });
+
+    renderProjectSlide(0);
 
     projectModal.classList.add('open');
     projectModal.setAttribute('aria-hidden', 'false');
@@ -574,9 +688,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  projectCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const pid = card.getAttribute('data-project-id');
+  projectRows.forEach(row => {
+    row.addEventListener('click', () => {
+      const pid = row.getAttribute('data-project-id');
       openProjectModal(pid);
     });
   });
