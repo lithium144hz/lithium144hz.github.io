@@ -493,11 +493,18 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       slides: [
         {
-          title: 'Dead of Night — Gameplay & World Reel',
-          tag: 'Cemetery Sim &bull; Action RPG',
-          type: 'placeholder',
-          src: '',
-          phText: '[ Dead of Night — Day/Night Gameplay & Mechanics Reel ]'
+          title: 'Gameplay Reel',
+          tag: '2D Pixel Art',
+          type: 'video',
+          src: 'images/deadofnightpreview.mov',
+          phText: ''
+        },
+        {
+          title: 'Key Art & Cemetery Title Scene',
+          tag: 'Key Art &bull; 2D Pixel Art',
+          type: 'image',
+          src: 'images/dead_of_night_cover.png',
+          phText: ''
         },
         {
           title: 'Keeper Daytime Duties: Shoveling & Grave Digging',
@@ -511,27 +518,20 @@ document.addEventListener('DOMContentLoaded', () => {
           tag: 'Pixel Combat &bull; Attack Smears',
           type: 'placeholder',
           src: '',
-          phText: '[ Asset 02 — Banishment Spells, Monster Hits & Attack Smears ]'
+          phText: '[ Asset 02 — Holy Cross Spells, Smears & Monster Banishment ]'
         },
         {
-          title: 'Cemetery Mourners & NPC Dialogue Sprites',
-          tag: 'Pixel Characters &bull; Expressions',
-          type: 'placeholder',
-          src: '',
-          phText: '[ Asset 03 — Daytime Client NPCs & Grave Visitors ]'
-        },
-        {
-          title: 'Day & Night Cemetery Environment & Lighting',
+          title: 'Cemetery Architecture & Church Interiors',
           tag: 'Pixel Environment &bull; Tilemaps',
           type: 'placeholder',
           src: '',
-          phText: '[ Asset 04 — Tombstones, Crypts, Fog & Day/Night Palettes ]'
+          phText: '[ Asset 03 — Church Cathedral, Crypts & Tilemaps ]'
         }
       ],
       storyTitle: 'About the Project',
       storyText: 'Dead of Night is a 2D cemetery simulation and survival action RPG created in a collaborative team setting. Players step into the worn boots of a graveyard watchman facing two contrasting realities: tending to grieving visitors and digging fresh graves under the pale daylight, then defending the consecrated grounds and banishing restless monsters once night falls.',
-      roleTitle: 'My Role & Artistic Direction',
-      roleText: 'As the sole visual artist and animator on the team, I was responsible for the entire visual production: designing and animating all frame-by-frame pixel art character sprites (the graveyard keeper, daytime clients, and nighttime creatures), environmental tilemaps, day-to-night palette shifts, and UI assets.'
+      roleTitle: 'My Role: 2D Art & Animation',
+      roleText: 'As the 2D artist on the team, my focus was entirely on the visual art and animation pipeline — creating all frame-by-frame pixel character sprites (the graveyard keeper, daytime clients, and nocturnal monsters), atmospheric cemetery tilemaps, and key art, with UI handled separately by the team.'
     }
   };
 
@@ -559,9 +559,11 @@ document.addEventListener('DOMContentLoaded', () => {
             video.src = slide.src;
             video.autoplay = true;
             video.loop = true;
+            video.muted = true;
             video.controls = true;
             video.playsInline = true;
             mediaArea.appendChild(video);
+            video.play().catch(() => {});
           } else {
             const img = document.createElement('img');
             img.src = slide.src;
@@ -570,8 +572,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         } else {
           mediaArea.innerHTML = `
-            <span class="stage-ph-title">${slide.phText || slide.title}</span>
-            <span class="stage-ph-desc">Work ${currentProjectSlideIndex + 1} of ${slides.length} &bull; Image or video reel placeholder</span>
+            <div class="stage-ph-content">
+              <span class="stage-ph-title">${slide.phText || slide.title}</span>
+              <span class="stage-ph-desc">Work ${currentProjectSlideIndex + 1} of ${slides.length} &bull; Image or video reel placeholder</span>
+            </div>
           `;
         }
         mediaArea.classList.remove('fade-out');
@@ -579,7 +583,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (slideTitle) slideTitle.textContent = slide.title;
-    if (slideTag) slideTag.innerHTML = `${String(currentProjectSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} &bull; ${slide.tag}`;
+    if (slideTag) {
+      const numStr = `${String(currentProjectSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+      slideTag.innerHTML = slide.tag ? `${numStr} &bull; ${slide.tag}` : numStr;
+    }
 
     dots.forEach((dot, i) => {
       if (i === currentProjectSlideIndex) dot.classList.add('active');
@@ -683,6 +690,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeProjectModal() {
     if (!projectModal) return;
+    const activeVideo = projectModal.querySelector('video');
+    if (activeVideo) {
+      activeVideo.pause();
+      activeVideo.src = '';
+    }
     projectModal.classList.remove('open');
     projectModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
